@@ -1,36 +1,22 @@
 #!/bin/bash -l
 
-# Set SCC project
-#$ -P pathoscope
+#$ -P project_name
 
-# Specify hard time limit for the job. 
-#   The job will be aborted if it runs longer than this time.
-#   The default time is 12 hours
 #$ -l h_rt=6:00:00
 
-# Send an email when the job finishes or if it is aborted (by default no email is sent).
 #$ -m a
 
-# Give job a name
-#$ -N vitA_rnaseq_2021
+#$ -N vitA_rnaseq
 
-# Request eight cores
 #$ -pe omp 8
 
-# Combine output and error files into a single file
 #$ -j y
 
-# Specify the output file name
 #$ -o vitA_rnaseq_2021.qlog
 
-#   ask for scratch space
 # #$ -l scratch=200G
 
-# Submit an array job with 76 tasks #$ -t 1-76
 #$ -t 1-8
-
-# Use the SGE_TASK_ID environment variable to select the appropriate input file from bash array
-# Bash array index starts from 0, so we need to subtract one from SGE_TASK_ID value
 
 # Keep track of information related to the current job
 echo "=========================================================="
